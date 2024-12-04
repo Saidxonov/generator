@@ -1,0 +1,307 @@
+@font-face {
+  font-family: "Departure Mono";
+  src: url("https://assets.codepen.io/3421562/DepartureMono-Regular.woff2")
+    format("woff2");
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: Departure Mono;
+  background: #1e1e1e;
+  background: linear-gradient(28deg, #111, #272727);
+  color: #fff;
+  position: relative;
+  height: 100%;
+}
+
+.face {
+  --xv: 0;
+  --yv: 0;
+  background: #141414;
+  background: #fff1;
+  background-image: radial-gradient(transparent 1px, #111 0);
+  background-size: 3px 3px;
+  font-weight: 1000;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 3em;
+  width: 3em;
+  height: 3em;
+  border-radius: 10px;
+  border: 1px solid #fff2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1em;
+  overflow: hidden;
+  user-select: none;
+  box-shadow: 0px 0px 0px 2px #0005, 0px 0px 0px 1px #fff3,
+    -2px 2px 2px -1px #000, 0px 0px 12px 0px #fff0,
+    inset -2px 2px 3px -2px #fffa;
+  cursor: pointer;
+  transition: all 0.4s ease-out;
+  backdrop-filter: blur(10px);
+  perspective: 1000px;
+}
+
+.face #eyel {
+  translate: 0 -1em;
+}
+
+.face #eyer {
+  translate: 0 -1em;
+}
+
+body:has(.pwr-btn:not(.empty)) .face {
+  box-shadow: 0px 0px 0px 2px #0005, 0px 0px 0px 1px #fff3,
+    -2px 2px 2px -1px #000, 0px 0px 12px 0px #fff2,
+    inset -2px 2px 3px -2px #fffa;
+}
+
+.face > * {
+  text-shadow: -3px 3px 3px #000c, 0 1px 12px #fffa, 0 0 5px #fff;
+}
+
+body:has(.pwr-btn:not(.empty)) .face:hover > * {
+  transform: translateX(calc(var(--yv) * 0.2px))
+    translateY(calc(var(--xv) * -0.2px));
+  transition: all 0.4s ease-out;
+}
+
+body:has(.pwr-btn.empty) .face > * {
+  opacity: 0.2;
+}
+
+.face::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-shadow: inset -2px 2px 2px 0px #fff5, inset 2px -2px 2px 1px #1118;
+  scale: 1.1;
+  border-radius: 12px;
+  transform: translateX(calc(var(--yv) * 0.2px))
+    translateY(calc(var(--xv) * -0.2px));
+  transition: all 0.4s ease-out;
+}
+
+.face::after {
+  content: "";
+  display: block;
+  width: 200%;
+  height: 0.6em;
+  background: #fff2;
+  position: absolute;
+  rotate: 24deg;
+  top: -50%;
+  transition: all 0.4s ease-in-out;
+}
+
+.face:hover {
+  scale: 2;
+  box-shadow: -24px 33px 8px -10px #0005, 0px 0px 0px 1px #fff3,
+    -2px 2px 2px -1px #000, 0px 0px 12px 0px #fff0,
+    inset -2px 2px 3px -2px #fffc !important;
+}
+
+.face:hover::after {
+  top: 150%;
+  rotate: 42deg;
+}
+
+.pwr-btn {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 2em;
+  bottom: 0;
+  margin: auto;
+  translate: 0 min(10em, 30vh);
+  background: #141414;
+  background: #5478ad85;
+  background-image: radial-gradient(transparent 1px, #111 0);
+  background-size: 3px 3px;
+  width: fit-content;
+  height: fit-content;
+  padding: 0.4em 1.6em;
+  border: 1px solid #fff4;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0px 0px 0px 2px #0005, 0px 0px 0px 1px #fff3,
+    0px 0px 0px 1px #fff3, -2px 2px 2px -1px #000, 0px 0px 12px 0px #fff2,
+    inset -2px 2px 3px -2px #fffa;
+  text-shadow: 0 1px 12px #fffa, 0 0 5px #fff;
+  user-select: none;
+  transition: all 0.4s ease-in-out;
+}
+
+.pwr-btn::before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  background: #fff;
+  mix-blend-mode: difference;
+  filter: blur(1px);
+  height: calc(var(--power, 0) * 1%);
+  width: 100%;
+  transition: all 0.4s ease-in-out;
+}
+
+.pwr-btn.full::before {
+  border-radius: 6px;
+}
+
+.pwr-btn.full {
+  filter: brightness(1.2);
+  box-shadow: 0px 0px 0px 2px #0005, 0px 0px 6px 1px #fff3,
+    0px 0px 12px 1px #fff3, -2px 2px 2px -1px #000, 0px 0px 12px 0px #fff2,
+    inset -2px 2px 3px -2px #fffa;
+}
+
+.pwr-btn.empty {
+  filter: brightness(0.5);
+}
+
+.power-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  translate: 0 calc(min(10em, 30vh) / 2);
+  width: 1.6px;
+  height: min(10em, 30vh);
+  transition: all 0.4s ease-in-out;
+  background: repeating-linear-gradient(
+    transparent,
+    transparent 4px,
+    #fff1 4px,
+    #fff1 8px
+  );
+  filter: drop-shadow(0 0 2px #fff);
+  overflow: hidden;
+}
+
+.power-line::before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(transparent 0%, #fff 50%, transparent 100%);
+  animation: generation 1.618s ease-out infinite;
+  opacity: 0;
+}
+
+@keyframes generation {
+  0% {
+    translate: 0 100%;
+  }
+  100% {
+    translate: 0 calc(-1 * min(10em, 30vh));
+  }
+}
+
+.power-line::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: -2.5em;
+  width: 5em;
+  height: 100%;
+  box-shadow: inset 0 0 2em 1em #fff6;
+  opacity: 0;
+}
+
+body:has(.pwr-btn:not(.empty)) .power-line::before,
+body:has(.pwr-btn:not(.empty)) .power-line::after {
+  opacity: 0.6;
+  transition: all 1.618s ease-in-out;
+}
+
+body:has(.pwr-btn:not(.empty)) .power-line {
+  background: repeating-linear-gradient(
+    transparent,
+    transparent 4px,
+    #fff4 4px,
+    #fff4 8px
+  );
+}
+
+.face .zzz {
+  display: none;
+}
+
+.face.sleeping .zzz {
+  display: block;
+  color: #fff;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.face .zzz span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 20%;
+  right: 0;
+  top: 20%;
+  bottom: 0;
+  scale: 0;
+  font-size: 1em;
+  animation: zzzs 1.5s linear infinite;
+}
+
+.face .zzz span:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.face .zzz span:nth-child(3) {
+  animation-delay: 1s;
+}
+
+@keyframes zzzs {
+  0% {
+    scale: 0;
+    translate: 0;
+    rotate: 0;
+  }
+  100% {
+    scale: 1;
+    translate: 1em -2em;
+    rotate: -45deg;
+  }
+}
